@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function stack() {
+      // 保存栈中的元素
+      let items = [];
+      // 方法
+      // 添加元素到栈顶
+      this.push = function (element) {
+        items.push(element);
+      }
+      // 删除栈顶元素
+      this.pop = function () {
+        return items.pop();
+      }
+      // 返回栈顶元素
+      this.peek = function () {
+        return items[items.length-1];
+      }
+      // 判断栈是否为空
+      this.isEmpty = function () {
+        return items.length === 0;
+      }
+      // 清空栈
+      this.clear = function () {
+        items = [];
+      }
+      // 返回栈中的元素个数
+      this.size = function () {
+        return items.length;
+      }
+      // 打印栈中的元素
+      this.print = function () {
+        console.log(items.toString())
+      }
+    }
+  </script>
+</body>
+</html>

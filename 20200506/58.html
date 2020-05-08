@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function lengthOfLastWord(s) {
+      s = s.trim();
+      if(!s) {
+        return 0;
+      }
+      return s.split(' ')[s.split(' ').length-1].length
+    }
+    // console.log(lengthOfLastWord('Hello World'))
+    console.log(lengthOfLastWord('a '))
+  </script>
+</body>
+</html>

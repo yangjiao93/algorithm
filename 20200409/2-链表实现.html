@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ListNode(element) {
+      this.element = element;
+      this.next = null;
+    }
+
+    function addTwoNum(list1, list2) {
+      // console.log(list1)
+      // console.log(list2)
+      // 和的链表
+      let list3;
+      let _list3;
+      // 进位
+      let carry = 0;  
+      while(list1 || list2 || carry) {
+        let element1 = null;  // 链表1的值
+        let element2 = null;  // 链表2的值
+        let sum = 0;          // 和
+        if(list1) {
+          // 遍历链表1
+          element1 = list1.element;
+          list1 = list1.next;
+        }
+        if(list2) {
+          // 遍历链表2
+          element2 = list2.element;
+          list2 = list2.next;
+        }
+        // console.log(element1)
+        // console.log(element2)
+        sum = element1 + element2 + carry;
+        console.log(sum)
+        if(sum >= 10) {
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+        // console.log(carry)
+        if(!list3) {
+          list3 = new ListNode(sum % 10);
+          _list3 = list3
+        } else {
+          _list3.next = new ListNode(sum % 10);
+          _list3 = _list3.next;
+        }
+      }
+      return list3
+    }
+
+    let list1 = {
+      element: 2,
+      next: {
+        element: 4,
+        next: {
+          element: 3,
+          next: null
+        }
+      }
+    }
+
+    let list2 = {
+      element: 5,
+      next: {
+        element: 6,
+        next: {
+          element: 4,
+          next: null
+        }
+      }
+    }
+
+    console.log(addTwoNum(list1, list2))
+  </script>
+</body>
+</html>

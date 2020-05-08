@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function addTwoNum(arr1, arr2) {
+      arr1 = arr1.reverse()
+      arr2 = arr2.reverse()
+      // 和的数组
+      let arr3 = [];
+      // 进位
+      let carry = 0;
+      for(let i = 0; i <= arr1.length; i++) {
+        let sum;
+        if(i === arr1.length) {
+          sum = carry;
+        } else {
+          sum = arr1[i] + arr2[i] + carry;
+        }
+        if(sum >= 10) {
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+        arr3.push(sum % 10)
+      }
+      console.log(+arr3.reverse().join(''))
+    }
+
+    // addTwoNum([2, 4, 3], [5, 6, 4])
+    addTwoNum([9, 4, 3], [5, 6, 9])
+  </script>
+</body>
+</html>

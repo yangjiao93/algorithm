@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function isValid(s) {
+      let sList = s.split('');
+      // console.log(sList)
+      let stackList = [];
+      for(let i = 0; i < sList.length; i++) {
+        if(sList[i] === '(' || sList[i] === '[' || sList[i] === '{') {
+          stackList.push(sList[i])
+          // console.log(stackList)
+        } else if (sList[i] === ')' || sList[i] === ']' || sList[i] === '}') {
+          let popE = stackList.pop();
+          switch (sList[i]) {
+            case ')':
+              if(popE !== '(') {
+                return false;
+              }
+              break;
+            case ']':
+            if(popE !== '[') {
+                return false;
+              }
+              break;
+            case '}':
+            if(popE !== '{') {
+                return false;
+              }
+              break;  
+            default:
+              break;
+          }
+        }
+      }
+      if(stackList.length > 0) {
+        return false;
+      }
+      return true;
+    }
+    // console.log(isValid('()'))
+    // console.log(isValid('()[]{}'))
+    // console.log(isValid('(]'))
+    // console.log(isValid('([)]'))
+    // console.log(isValid('(([])'))
+    // console.log(isValid('([]))'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+    // pwwkew
+    // 无重复字符的最长子串是 "wke"
+    // function lengthOfLongestSubstring(str) {
+    //   let strList = str.split('')
+    //   let newList = []
+    //   for(let i in strList) {
+    //     if(newList.indexOf(strList[i]) === -1) {
+    //       newList.push(strList[i])
+    //     } else {
+    //       lengthOfLongestSubstring(str.substring(i))
+    //       break;
+    //     }
+    //   }
+    //   console.log(newList)
+    //   console.log(newList.length)
+    // }
+
+
+    // function lengthOfLongestSubstring(str) {
+    //   // 字符串转成数组
+    //   let strList = str.split('')
+    //   // 新建空数组
+    //   let newList = []
+    //   let list = []
+    //   // 循环遍历数组
+    //   for(let i = 0; i < strList.length; i++) {
+    //     if(newList.indexOf(strList[i]) === -1) {
+    //       newList.push(strList[i])
+    //     } else {
+    //       list.push(newList.join('').length)
+    //       newList = []
+    //       i--
+    //     }
+    //   }
+    //   let result = list.sort(function (a, b) {
+    //     return b - a
+    //   })
+    //   return result[0]
+    // }
+
+
+    var lengthOfLongestSubstring = function(s) {
+      if(!s) {
+          return 0
+      }
+      // 字符串转数组
+      let sList = s.split('')
+      if(sList.length === 1) {
+        return 1
+      }
+      // 新建数组
+      let newList = []
+      let list = []
+      let j = 0
+      while (j < sList.length) {
+        for(let i = j; i < sList.length; i++) {
+            if(newList.indexOf(sList[i]) === -1) {
+                newList.push(sList[i])
+            } else {
+                newList = []
+                break;
+            }
+        }
+        j++
+      }
+      console.log(list)
+      // let result = list.sort(function(a, b) {
+      //     return b - a
+      // })
+      // return result[0]
+    };
+    // console.log(lengthOfLongestSubstring('pwwkew'))
+    // console.log(lengthOfLongestSubstring('abcabcbb'))
+    // console.log(lengthOfLongestSubstring('bbbbb'))
+    // console.log(lengthOfLongestSubstring(""))
+    // console.log(lengthOfLongestSubstring(" "))
+    console.log(lengthOfLongestSubstring("au"))
+    // console.log(lengthOfLongestSubstring("dvdf"))
+  </script>
+</body>
+</html>

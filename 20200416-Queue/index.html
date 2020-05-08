@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Queue() {
+      // 存储队列中的元素
+      let items = [];
+      // 入队列
+      this.enqueue = function (element) {
+        items.push(element);
+      }
+      // 出队列
+      this.dequeue = function () {
+        return items.shift();
+      }
+      // 输出第一个元素
+      this.front = function () {
+        return items[0];
+      }
+      // 判断队列是否为空
+      this.isEmpty = function () {
+        return items.length === 0; 
+      }
+      // 打印出队列中有多少个元素
+      this.size = function () {
+        return items.length;
+      }
+    }
+  </script>
+</body>
+</html>

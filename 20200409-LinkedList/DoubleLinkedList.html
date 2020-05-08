@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function DoublyLinkedList() {
+      let Node = function (element) {
+        this.element = element;
+        this.next = null;
+        this.pre = null;
+      }
+
+      let length = 0;
+      let head = null;
+      let tail = null;
+
+      // 方法
+      this.insert = function (position, element) {
+        // 三种情况：1、在第一个位置；2、在最后一个位置；3、其他位置
+        // 检查越界值
+        if(position >= 0 && position <= length) {
+          let node = new Node(element);
+          let current = head;
+          let previous;
+          let index = 0;
+          if(position === 0) {
+            // 在第一个位置
+            if(!head) {
+              head = node
+              tail = node
+            } else {
+              node.next = current
+              current.pre = node
+              head = node
+            }
+          } else if(position === length) {
+            // 在最后一个位置
+            current = tail
+            current.next = node
+            node.pre = current
+            tail = node
+          } else {
+            // 其他
+            while (index++ < position) {
+              previous = current
+              current = current.next
+            }
+            node.next = current
+            previous.next = node
+
+            current.pre = node
+            node.pre = previous
+          }
+          length++;
+          return true
+        } else {
+          return false
+        }
+      }
+      this.removeAt = function (position) {
+        // 三种情况： 1、在第一个位置；2、最后一个位置；3、其他位置
+        // 检查越界值
+        if(position > -1 && position < length) {
+          let current = head;
+          let previous;
+          let index = 0;
+          if(position === 0) {
+            // 第一个位置
+            current.next = head;
+            if(length === 1) {
+              tail = null
+            } else {
+              head.pre = null
+            }
+          } else if(position = length-1) {
+            // 最后一个位置
+            current = tail
+            tail = current.pre
+            tail.next = null
+          } else {
+            // 其他
+            while (index++ < position) {
+              previous = current
+              current = current.next
+            }
+            previous.next = current.next
+            current.next.pre = previous
+          }
+          length--;
+          return current.element;
+        } else {
+          return null
+        }
+      }
+    }
+  </script>
+</body>
+</html>

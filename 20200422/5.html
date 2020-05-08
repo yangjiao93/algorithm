@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function longestPalindrome(s) {
+      if(!s) {
+        return '';
+      }
+      if(s.length === 1) {
+        return s;
+      }
+      if(s.length === 2) {
+        if(s.split('')[0] === s.split('')[1]) {
+          return s;
+        } else {
+          return s.split('')[0];
+        }
+      }
+      let sList = s.split('');
+      let newSList = [];
+      // yxy型
+      let i = 1;
+      while (i < sList.length) {
+        if(sList[i-1] === sList[i+1]) {
+          let step1 = 0;
+          while (1) {
+            let l = i-1-step1;
+            let r = i+1+step1;
+            if(sList[l] !== sList[r]) {
+              let newS = sList.slice(l+1, r).join('');
+              newSList.push(newS);
+              // console.log(newSList)
+              break;
+            }
+            if(l === 0 || r === sList.length-1) {
+              if(sList[l] !== sList[r]) {
+                let newS = sList.slice(l+1, r).join('');
+                newSList.push(newS);
+                // console.log(newSList)
+                break;
+              } else {
+                let newS = sList.slice(l, r+1).join('');
+                newSList.push(newS);
+                // console.log(newSList)
+                break;
+              } 
+            }
+            step1++;
+          }
+        }
+        i++;
+      }
+      // xx型
+      let j = 1;
+      while (j < sList.length) {
+        if(sList[j-1] === sList[j]) {
+          let step2 = 0;
+          while (1) {
+            let l = j-2-step2;
+            let r = j+1+step2;
+            if(sList[l] !== sList[r]) {
+              let newS = sList.slice(l+1, r).join('');
+              newSList.push(newS)
+              // console.log(newSList)
+              break;
+            }
+            if(l === 0 || r === sList.length-1) {
+              if(sList[l] !== sList[r]) {
+                let newS = sList.slice(l+1, r).join('');
+                newSList.push(newS)
+                // console.log(newSList)
+                break;
+              } else {
+                let newS = sList.slice(l, r+1).join('');
+                newSList.push(newS)
+                // console.log(newSList)
+                break;
+              }
+            }
+            step2++;
+          }
+        }
+        j++;
+      }
+      // console.log(newSList)
+      let list = newSList.sort(function (a, b) {
+        return b.length-a.length;
+      })
+      if(list.length > 0) {
+        return list[0]
+      } else {
+        return sList[0]
+      }
+      
+    }
+    // longestPalindrome('aba')
+    // longestPalindrome('sabafs')
+    // longestPalindrome('sabasd')
+    // longestPalindrome('agabasd')
+    // longestPalindrome('dabcbadl')
+    // longestPalindrome('cbbd')
+    // longestPalindrome('cbbcd')
+    // longestPalindrome('adcbbcd')
+    // longestPalindrome('cbbc')
+    // console.log(longestPalindrome('asdcdffbabad'))
+    // console.log(longestPalindrome(''))
+    // longestPalindrome('cbbd')
+    // console.log(longestPalindrome('cb'))
+    console.log(longestPalindrome('abcda'))
+  </script>
+</body>
+</html>

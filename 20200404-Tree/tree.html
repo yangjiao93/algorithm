@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 插入
+    this.insert = function (key) {
+      // 创建实例
+      var newNode = new Node();
+      // 插入操作（判断是否插入为根节点）
+      if(root === null) {
+        // 根节点
+        root = newNode;
+      } else {
+        // 插入操作
+        insertNode(root, newNode)
+      }
+    }
+    function insertNode(node, newNode) {
+      if(newNode.key < node.key) {
+        // 左
+        if(node.left === null) {
+          node.left = newNode
+        } else {
+          insertNode(node.left, newNode)
+        }
+      } else {
+        // 右
+        if(node.right === null) {
+          node.right = newNode
+        } else {
+          insertNode(node.right, newNode)
+        }
+      }
+    }
+  
+    // 中序
+    this.inOrderTraverse = function (callback) {
+      inOrderTraverseNode(root, callback)
+    }
+    function inOrderTraverseNode(node, callback) {
+      if(node !== null) {
+        inOrderTraverseNode(node.left, callback)
+        callback(node.key)
+        inOrderTraverseNode(node.right, callback)
+      }
+    }
+    // 先序
+    this.preOrderTraverse = function (callback) {
+      preOrderTraverseNode(root, callback)
+    }
+    function preOrderTraverseNode(node, callback) {
+      if(node !== null) {
+        callback(node.key)
+        preOrderTraverseNode(node.left, callback)
+        preOrderTraverseNode(node.right, callback)
+      }
+    }
+    // 后序
+    this.postOrderTraverse = function (callback) {
+      postOrderTraverseNode(root, callback)
+    }
+    function postOrderTraverseNode(node, callback) {
+      if(node !== null) {
+        postOrderTraverseNode(node.left, callback)
+        postOrderTraverseNode(node.right, callback)
+        callback(node.key)
+      }
+    }
+
+    // 最小值
+    this.min = function () {
+      return minNode(root)
+    }
+    function minNode(node) {
+      if(node) {
+        while (node && node.left !== null) {
+          node = node.left
+        }
+        return node.key
+      }
+      return null
+    }
+    // 最大值
+    this.max = function () {
+      return maxNode(root)
+    }
+    function maxNode(node) {
+      if(node) {
+        while (node && node.right !== null) {
+          node = node.right
+        }
+        return node.key
+      }
+      return null
+    }
+    // 特定值
+    this.search = function (key) {
+      return searchNode(root, key)
+    }
+    function searchNode(node, key) {
+      if(node === null) {
+        return false
+      }
+      if(key < node.key) {
+        searchNode(node.left, key)
+      } else if(key > node.key) {
+        searchNode(node.right, key)
+      } else {
+        return true
+      }
+    }
+    // 移除
+    this.remove = function (key) {
+      return removeNode(root, key)
+    }
+    function removeNode(node, key) {
+      if(node === null) {
+        return null
+      }
+      if(key < node.key) {
+        node.left = removeNode(node.left, key)
+        return node
+      } else if(key > node.key) {
+        node.right = removeNode(node.right, key)
+      } else {
+        // 一个叶结点
+        if(node.left === null && node.right === null) {
+          node = null
+          return node
+        }
+        // 只有一个子节点的结点
+        if(node.left === null) {
+          node = node.right
+          return node
+        } else if(node.right === null) {
+          node = node.left
+          return node
+        }
+        // 有2个子节点的结点
+        var aux = findMinNode(node.right)
+        node.key = aux.key
+        node.right = removeNode(node.right, aux.key)
+        return node
+      }
+    }
+    function findMinNode(node) {
+      while (node && node.left !== null) {
+        node = node.left
+      }
+      return node
+    }
+  </script>
+</body>
+</html>

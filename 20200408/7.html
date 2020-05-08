@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function reverse(num) {
+      if(num > Math.pow(2, 32)) {
+        return 0
+      }
+      let opeNum
+      if(num < 0) {
+        opeNum = -num
+      } else {
+        opeNum = num
+      }
+      let numList = opeNum.toString().split('')
+      let newList = numList.reverse()
+      let newNum = parseInt(newList.join(''))
+      if(newNum > Math.pow(2, 32)) {
+        return 0
+      }
+      if(num < 0) {
+        newNum = -newNum
+      }
+      return newNum
+    }
+    // console.log(reverse(123))
+    // console.log(reverse(-123))
+    // console.log(reverse(120))
+    console.log(reverse(1534236469))
+  </script>
+</body>
+</html>

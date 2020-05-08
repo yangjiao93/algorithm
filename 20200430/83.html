@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function deleteDuplicates(head) {
+    //   let i = 0;
+    //   let list = [];
+    //   for(let i = 0; i < head.length; i++) {
+    //     if(myIndexOf(list, head[i]) === -1) {
+    //       list.push(head[i])
+    //     }
+    //   }
+    //   console.log(list);
+    // }
+    // // deleteDuplicates([1, 1, 2])
+    // // deleteDuplicates([1, 1, 2, 3, 3])
+
+    // function myIndexOf(arr, val) {
+    //   for(let i = 0; i < arr.length; i++) {
+    //     if(arr[i] === val) {
+    //       return i;
+    //     }
+    //   }
+    //   return -1;
+    // }
+
+
+    function deleteDuplicates(head) {
+      if(head === null) {
+        return 0;
+      }
+      let current = head;
+      while (head.next) {
+        if(head.val === head.next.val) {
+          head.next = head.next.next;
+        }else {
+          head = head.next;
+        }
+      }
+      // console.log(current)
+      return current;
+    }
+
+    // deleteDuplicates({
+    //   val: 1,
+    //   next: {
+    //     val: 1,
+    //     next: {
+    //       val: 2,
+    //       next: {
+    //         val: 3,
+    //         next: {
+    //           val: 3,
+    //           next: null
+    //         }
+    //       }
+    //     }
+    //   }
+    // })
+    deleteDuplicates({
+      val: 1,
+      next: {
+        val: 1,
+        next: {
+          val: 2,
+          next: null
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function HashTable() {
+      var table = [];
+
+      this.put = function (key, value) {
+        let position = loseloseHashCode(key);
+        table[position] = value;
+      }
+      this.remove = function (key) {
+        let position = loseloseHashCode(key);
+        table[position] = undefined;
+      }
+      this.get = function (key) {
+        let position = loseloseHashCode(key);
+        return table[position];
+      }
+    }
+
+    // 散列函数
+    function loseloseHashCode(key) {
+      
+    }
+  </script>
+</body>
+</html>

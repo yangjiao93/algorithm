@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+    // function isPalindrome(x) {
+    //   let numList = x.toString().split('');
+    //   // console.log(numList);
+    //   let newList = [];
+    //   for(let i = numList.length-1; i >= 0; i--) {
+    //     newList.push(numList[i])
+    //   }
+    //   // console.log(newList)
+    //   if(newList.join('') === x.toString()) {
+    //     return true
+    //   } else {
+    //     return false;
+    //   }
+    // }
+
+
+    function isPalindrome(x) {
+      let originX = x;
+      // console.log(x)
+      if(x < 10 && x >= 0) {
+        return true
+      }
+      if(x < 0) {
+        x = -x
+      } 
+      let newList = [];
+      let remainder;  // 余数
+      while (x !== 0) {
+        remainder = x % 10;
+        newList.push(remainder);
+        x = Math.floor(x/10);
+      }
+      // console.log(newList)
+      let newX = newList.join('');
+      if(originX < 0) {
+        newX = newX + '-'
+      }
+      // console.log(newX)
+      // console.log(originX.toString())
+      if(newX === originX.toString()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    // console.log(isPalindrome(123))
+    // console.log(isPalindrome(121))
+    // console.log(isPalindrome(-121))
+    // console.log(isPalindrome(10))
+    console.log(isPalindrome(0))
+    // console.log(isPalindrome(-1))
+  </script>
+</body>
+</html>

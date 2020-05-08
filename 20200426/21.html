@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+    function mergeTwoLists(l1, l2) {
+      if(l1 === null && l2 === null) {
+        return l1;
+      }
+      if(l1 === null && l2 !== null) {
+        return l2
+      }
+      if(l1 !== null && l2 === null) {
+        return l1
+      }
+      let l3;
+      let l33;
+      while (l1 !== null && l2 !== null) {
+        if(l1.val <= l2.val) {
+          let node = new ListNode(l1.val);
+          if(l3 === undefined) {
+            l3 = node;
+            l33 = l3;
+          } else {
+            while (l3.next) {
+              l3 = l3.next;
+            }
+            l3.next = node;
+          }
+          l1 = l1.next;
+        } else if(l1.val > l2.val) {
+          let node = new ListNode(l2.val);
+          if(l3 === undefined) {
+            l3 = node;
+            l33 = l3;
+          } else {
+            while (l3.next) {
+              l3 = l3.next;
+            }
+            l3.next = node;
+          }
+          l2 = l2.next;
+        } 
+      }
+      if(l1 === null && l2 !== null) {
+        while (l2 !== null) {
+          let node = new ListNode(l2.val);
+          // console.log(node)
+          if(l3 === null) {
+            l3 = node;
+            l33 = l3;
+          } else {
+            while (l3.next) {
+              l3 = l3.next;
+            }
+            l3.next = node;
+          }
+          l2 = l2.next;
+        }
+      }
+      if(l1 !== null && l2 === null) {
+        while (l1 !== null) {
+          let node = new ListNode(l1.val);
+          if(l3 === null) {
+            l3 = node;
+            l33 = l3;
+          } else {
+            while (l3.next) {
+              l3 = l3.next;
+            }
+            l3.next = node;
+          }
+          l1 = l1.next;
+        }
+      }
+      console.log(l33)
+    }
+
+    mergeTwoLists({
+      val: null,
+      next: null
+    }, {
+      val: 0,
+      next: null
+    })
+
+    // mergeTwoLists({
+    //   val: 1,
+    //   next: {
+    //     val: 2,
+    //     next: {
+    //       val: 3,
+    //       next: {
+    //         val: 6,
+    //         next: null
+    //       }
+    //     }
+    //   }
+    // }, {
+    //   val: 2,
+    //   next: {
+    //     val: 3, 
+    //     next: {
+    //       val: 4,
+    //       next: {
+    //         val: 5,
+    //         next: {
+    //           val: 7,
+    //           next: null
+    //         }
+    //       }
+    //     }
+    //   }
+    // })
+  </script>
+</body>
+</html>
